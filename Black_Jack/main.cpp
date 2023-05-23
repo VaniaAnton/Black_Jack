@@ -1,14 +1,25 @@
-//
-//  main.cpp
-//  Black_Jack
-//
-//  Created by Ваня Антонь on 2023-05-16.
-//
-
 #include <iostream>
+#include <ctime>
+#include "Cards.hpp"
+#include "Player.hpp"
+#include "Game.hpp"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main()
+{
+    // Initialize random seed
+    std::srand(static_cast<unsigned>(std::time(nullptr)));
+
+    // Create the deck of cards
+    Cards deck;
+    deck.addVector();
+
+    // Create the game object with the deck
+    Game game(deck);
+
+    // Game loop
+    while (!game.IsGameOver()) {
+        game.update();
+    }
+
     return 0;
 }
