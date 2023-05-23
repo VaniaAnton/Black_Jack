@@ -7,8 +7,8 @@
 
 class Game {
 private:
-    Player player;
-    Player robot;
+    Player player1;
+    Player player2;
     bool m_running;
     bool m_GameOver;
     char m_command;
@@ -18,6 +18,8 @@ private:
 public:
     Game(Cards& deck);
     void update();
+    void updatePlayer1();
+    void updatePlayer2();
     bool IsGameOver() const;
 };
 

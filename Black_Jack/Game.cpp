@@ -2,7 +2,7 @@
 #include <iostream>
 
 Game::Game(Cards& deck)
-    : player(deck), robot(deck)
+    : player1(deck), player2(deck)
 {
     this->m_running = true;
     this->m_GameOver = false;
@@ -11,29 +11,29 @@ Game::Game(Cards& deck)
 
 void Game::endGame()
 {
-    if (player.getHand() == 21 && player.getHand() > robot.getHand()) {
+    if (player1.getHand() == 21 && player1.getHand() > player2.getHand()) {
         this->m_GameOver = true;
-        std::cout << player.getName()<< " win!\n";
-        std::cout <<robot.getName()<< " lose!\n";
+        std::cout << player1.getName()<< " win!\n";
+        std::cout <<player2.getName()<< " lose!\n";
     }
-    else if (robot.getHand() > 21 && player.getHand() <= 21 ) {
+    else if (player2.getHand() > 21 && player2.getHand() <= 21 ) {
         this->m_GameOver = true;
-        std::cout << player.getName()<< " win!\n";
-        std::cout <<robot.getName()<< " lose!\n";
+        std::cout << player1.getName()<< " win!\n";
+        std::cout <<player2.getName()<< " lose!\n";
         
     }
     
-    else if (robot.getHand() == 21 && robot.getHand() > player.getHand()) {
+    else if (player2.getHand() == 21 && player2.getHand() > player1.getHand()) {
         this->m_GameOver = true;
-        std::cout <<robot.getName()<< " win!\n";
-        std::cout << player.getName()<< " lose!\n";
+        std::cout <<player2.getName()<< " win!\n";
+        std::cout << player1.getName()<< " lose!\n";
     }
-    else if ( player.getHand() > 21 && robot.getHand() <=21) {
+    else if ( player1.getHand() > 21 && player2.getHand() <=21) {
         this->m_GameOver = true;
-        std::cout <<robot.getName()<< " win!\n";
-        std::cout << player.getName()<< " lose!\n";
+        std::cout <<player2.getName()<< " win!\n";
+        std::cout << player1.getName()<< " lose!\n";
     }
-    else if (player.getHand() >21 && robot.getHand()>21){
+    else if (player1.getHand() >21 && player2.getHand()>21){
         std::cout<<"       BOTH ARE LOSERS"<<std::endl;
         std::cout << "       a$$$$$$$$$$a" << std::endl;
         std::cout  << "     a$$$$$$$$$$$$$$a" << std::endl;
@@ -59,20 +59,20 @@ void Game::endGame()
 
 void Game::update()
 {
-    std::cout << "Enter W to draw a card for both \nEnter A to draw a card for " <<player.getName()<< "\nEnter D to draw a card for "<<robot.getName()<<"\nThe first person who is closer to 21 wins!\n";
+    std::cout << "Enter W to draw a card for both \nEnter A to draw a card for " <<player1.getName()<< "\nEnter D to draw a card for "<<player2.getName()<<"\nThe first person who is closer to 21 wins!\n";
     std::cin >> this->m_command;
 
     switch (this->m_command) {
         case 'w':
         case 'W':
-            std::cout << player.getName() << " Drew - " << player.randomCard() << '\n';
-            std::cout << robot.getName() << " Drew - " << robot.randomCard() << '\n';
+            std::cout << player1.getName() << " Drew - " << player1.randomCard() << '\n';
+            std::cout << player2.getName() << " Drew - " << player2.randomCard() << '\n';
 
             std::cout << std::endl;
             std::cout << std::endl;
 
-            std::cout << player.getName() << "'s Hand - " << player.getHand() << '\n';
-            std::cout << robot.getName() << "'s Hand - " << robot.getHand() << '\n';
+            std::cout << player1.getName() << "'s Hand - " << player1.getHand() << '\n';
+            std::cout << player2.getName() << "'s Hand - " << player2.getHand() << '\n';
 
             std::cout << std::endl;
             std::cout << std::endl;
@@ -86,14 +86,14 @@ void Game::update()
             break;
         case 'a':
         case 'A':
-            std::cout << player.getName() << " Drew - " << player.randomCard() << '\n';
-            std::cout << robot.getName() << "  did not Draw a card "<<std::endl;
+            std::cout << player1.getName() << " Drew - " << player1.randomCard() << '\n';
+            std::cout << player2.getName() << "  did not Draw a card "<<std::endl;
 
             std::cout << std::endl;
             std::cout << std::endl;
 
-            std::cout << player.getName() << "'s Hand - " << player.getHand() << '\n';
-            std::cout << robot.getName() << "'s Hand - " << robot.getHand() << '\n';
+            std::cout << player1.getName() << "'s Hand - " << player1.getHand() << '\n';
+            std::cout << player2.getName() << "'s Hand - " << player2.getHand() << '\n';
 
             std::cout << std::endl;
             std::cout << std::endl;
@@ -107,14 +107,14 @@ void Game::update()
             break;
         case 'd':
         case 'D':
-            std::cout << player.getName() << " did not Draw a card" << '\n';
-            std::cout << robot.getName() << "  Drew -  "<<robot.randomCard()<<std::endl;
+            std::cout << player1.getName() << " did not Draw a card" << '\n';
+            std::cout << player2.getName() << "  Drew -  "<<player2.randomCard()<<std::endl;
 
             std::cout << std::endl;
             std::cout << std::endl;
 
-            std::cout << player.getName() << "'s Hand - " << player.getHand() << '\n';
-            std::cout << robot.getName() << "'s Hand - " << robot.getHand() << '\n';
+            std::cout << player1.getName() << "'s Hand - " << player1.getHand() << '\n';
+            std::cout << player2.getName() << "'s Hand - " << player2.getHand() << '\n';
 
             std::cout << std::endl;
             std::cout << std::endl;
@@ -136,6 +136,58 @@ void Game::update()
             break;
     }
 }
+void Game::updatePlayer1(){
+    std::cout << player1.getName()<< " Now is your turn, press W to draw a card " <<'\n';
+    std::cin >> this->m_command;
+    
+    switch (this->m_command) {
+        case 'w':
+        case 'W':
+            std::cout << player1.getName() << ", you got - " << player1.randomCard()<< '\n';
+            
+            std::cout << std::endl;
+            
+            std::cout << player1.getName() << " your Hand - " << player1.getHand() << '\n';
+            
+            std::cout <<"If you want to get one more press W , else press S to pass the turn to the next player "<<'\n';
+            
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.ignore();
+        case 's':
+        case 'S':
+            for (int i=0; i<10; i++) {
+                std::cout<<std::endl;
+            }
+            updatePlayer2();
+            break;
+    }
+}
+void Game::updatePlayer2(){
+    std::cout << player2.getName()<< " Now is your turn, press W to draw a card " <<'\n';
+    std::cin >> this->m_command;
+    
+    switch (this->m_command) {
+        case 'w':
+        case 'W':
+            std::cout << player2.getName() << ", you got - " << player2.randomCard()<< '\n';
+            
+            std::cout << std::endl;
+            
+            std::cout << player2.getName() << " your Hand - " << player2.getHand() << '\n';
+            
+            std::cout <<"If you want to get one more press W , else press S to check who is winner "<<'\n';
+            
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.ignore();
+        case 's':
+        case 'S':
+            endGame();
+            break;
+    }
+}
+
 
 bool Game::IsGameOver() const { return m_GameOver; }
 
