@@ -101,7 +101,7 @@ void Game::updatePlayer1(){
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cin.ignore();
-            for (int i=0; i<11; i++) {
+            for (int i=0; i<15; i++) {
                 std::cout<<std::endl;
             }
             // Delay for 5 seconds
@@ -110,9 +110,13 @@ void Game::updatePlayer1(){
             break;
         case 's':
         case 'S':
-            for (int i=0; i<11; i++) {
+            //for mac OS use this to skip line in console
+            for (int i=0; i<15; i++) {
                 std::cout<<std::endl;
             }
+            //for Windows u can comment code before and write #include <cstdlib>  or #include <stdlib.h> and use
+            //system("cls")
+            
             // Delay for 5 seconds
                 std::this_thread::sleep_for(std::chrono::seconds(5));
             updatePlayer2();
@@ -145,7 +149,7 @@ void Game::updatePlayer2(){
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cin.ignore();
-            for (int i=0; i<11; i++) {
+            for (int i=0; i<15; i++) {
                 std::cout<<std::endl;
             }
             // Delay for 5 seconds
@@ -154,16 +158,20 @@ void Game::updatePlayer2(){
             break;
         case 's':
         case 'S':
-            for (int i=0; i<11; i++) {
+            //for mac OS use this to skip line in console
+            for (int i=0; i<15; i++) {
                 std::cout<<std::endl;
             }
+            //for Windows u can comment code before and write #include <cstdlib>  or #include <stdlib.h> and use
+            //system("cls")
+            
             // Delay for 5 seconds
                 std::this_thread::sleep_for(std::chrono::seconds(5));
             updatePlayer1();
             break;
         case 'q':
         case 'Q':
-            for (int i=0; i<10; i++) {
+            for (int i=0; i<15; i++) {
                 std::cout<<std::endl;
             }
             endGame();
