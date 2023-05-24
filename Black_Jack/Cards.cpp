@@ -2,8 +2,8 @@
 
 Cards::Cards()
 {
-    All_Suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
-    addVector();
+All_Suits = { "Hearts", "Diamonds", "Clubs", "Spades" }; // Initialize the vector of all suits.
+addVector(); // Add all the cards to the deck.
 }
 
 void Cards::addCard(const std::string& name, const std::string& suit, int points)
@@ -13,7 +13,7 @@ void Cards::addCard(const std::string& name, const std::string& suit, int points
     card.suit = suit;
     card.points = points;
 
-    cards.push_back(card);
+    cards.push_back(card); // Add the card to the deck.
 }
 
 void Cards::printAllCards() const
@@ -25,12 +25,14 @@ void Cards::printAllCards() const
 
 void Cards::addVector()
 {
+    // Add the face cards (King, Queen, Jack, Ace) for each suit.
     for (const std::string& suit : All_Suits) {
         addCard("King", suit, 10);
         addCard("Queen", suit, 10);
         addCard("Jack", suit, 10);
         addCard("Ace", suit, 11);
     }
+    // Add the number cards (2-10) for each suit.
     for (const std::string& suit : All_Suits){
         for (int i = 2; i<=10; i++) {
             addCard(std::to_string(i), suit, i);
