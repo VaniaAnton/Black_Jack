@@ -15,18 +15,19 @@
 
 class Player {
 private:
-    std::string m_name;
-    int m_hand;
-    Card m_card;
-    Cards* m_deck; // Pointer to Cards object
+std::string m_name; // Player's name
+int m_hand; // Player's hand (total points)
+Card m_card; // Current card drawn by the player
+Cards* m_deck; // Pointer to the Cards object (deck of cards)
 
 public:
-    Player(Cards& deck);
-    Player& operator=(const Player& other); // Assignment operator
+    Player(Cards& deck); // Constructor
+    Player& operator=(const Player& other); // Assignment operatorv
 
-    int randomCard();
-    int getHand() const; // Function to get the player's hand
-    std::string getName() const; // Function to get the player's name
+    int randomCard();   // Draw a random card from the deck and update the player's hand
+    int getHand() const;   // Get the player's hand (total points)
+    std::string getName() const;   // Get the player's name
+
 };
 
 #endif // PLAYER_HPP
